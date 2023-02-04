@@ -1,6 +1,18 @@
 {
   "name": "pem",
   "rules": {
+    "pem_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "laxtextualmsg"
+          }
+        }
+      ]
+    },
     "laxtextualmsg": {
       "type": "SEQ",
       "members": [
@@ -473,7 +485,12 @@
     }
   },
   "extras": [],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "laxtextualmsg",
+      "laxtextualmsg"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

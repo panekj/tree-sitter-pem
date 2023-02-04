@@ -3,8 +3,11 @@
 
 module.exports = grammar({
   name: "pem",
+  conflicts: $ => [[$.laxtextualmsg, $.laxtextualmsg]],
   extras: () => [],
   rules: {
+    pem_file: $ => seq(repeat($.laxtextualmsg)),
+
     // ABNF (Lax)
 
     laxtextualmsg: $ => seq(
