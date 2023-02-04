@@ -1,175 +1,8 @@
 [
   {
-    "type": "CRLF",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "CR",
-          "named": true
-        },
-        {
-          "type": "LF",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "W",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "CR",
-          "named": true
-        },
-        {
-          "type": "LF",
-          "named": true
-        },
-        {
-          "type": "WSP",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "WSP",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "HTAB",
-          "named": true
-        },
-        {
-          "type": "SP",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "base64char",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "ALPHA",
-          "named": true
-        },
-        {
-          "type": "DIGIT",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "base64finl",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "WSP",
-          "named": true
-        },
-        {
-          "type": "base64char",
-          "named": true
-        },
-        {
-          "type": "base64pad",
-          "named": true
-        },
-        {
-          "type": "eol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "base64line",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "WSP",
-          "named": true
-        },
-        {
-          "type": "base64char",
-          "named": true
-        },
-        {
-          "type": "eol",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "eol",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CR",
-          "named": true
-        },
-        {
-          "type": "CRLF",
-          "named": true
-        },
-        {
-          "type": "LF",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "label",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "SP",
-          "named": true
-        },
-        {
-          "type": "labelchar",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "laxbase64text",
@@ -177,16 +10,8 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "W",
-          "named": true
-        },
-        {
-          "type": "base64char",
-          "named": true
-        },
         {
           "type": "base64pad",
           "named": true
@@ -202,10 +27,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "W",
-          "named": true
-        },
         {
           "type": "laxbase64text",
           "named": true
@@ -299,35 +120,7 @@
     "named": false
   },
   {
-    "type": "ALPHA",
-    "named": true
-  },
-  {
-    "type": "CR",
-    "named": true
-  },
-  {
-    "type": "DIGIT",
-    "named": true
-  },
-  {
-    "type": "HTAB",
-    "named": true
-  },
-  {
-    "type": "LF",
-    "named": true
-  },
-  {
-    "type": "SP",
-    "named": true
-  },
-  {
     "type": "base64pad",
-    "named": true
-  },
-  {
-    "type": "labelchar",
     "named": true
   }
 ]

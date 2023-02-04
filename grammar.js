@@ -11,32 +11,32 @@ module.exports = grammar({
     // ABNF (Lax)
 
     laxtextualmsg: $ => seq(
-      repeat($.W),
+      repeat($._W),
       $.preeb,
       optional($.laxbase64text),
       $.posteb,
-      repeat($.W),
+      repeat($._W),
     ),
 
-    W: $ => choice(
-      $.WSP,
-      $.CR,
-      $.LF,
+    _W: $ => choice(
+      $._WSP,
+      $._CR,
+      $._LF,
       "\u000B",
       "\u000C",
     ),
 
-    _laxbase64text_char: $ => choice(
-      $.W,
-      $.base64char,
+    __laxbase64text_char: $ => choice(
+      $._W,
+      $._base64char,
     ),
 
     _laxbase64text_padding: $ => seq(
       $.base64pad,
-      repeat($.W),
+      repeat($._W),
       optional(seq(
         $.base64pad,
-        repeat($.W),
+        repeat($._W),
       )),
     ),
 
@@ -47,7 +47,7 @@ module.exports = grammar({
     // used wherever laxbase64text is specified in the ABNF.
     laxbase64text: $ => choice(
       seq(
-        repeat1($._laxbase64text_char),
+        repeat1($.__laxbase64text_char),
         optional($._laxbase64text_padding),
       ),
       $._laxbase64text_padding,
@@ -59,65 +59,44 @@ module.exports = grammar({
 
     posteb: $ => seq("-----END ", optional($.label), "-----"),
 
-    base64char: $ => choice($.ALPHA, $.DIGIT, "+", "/"),
+    _base64char: $ => choice($._ALPHA, $._DIGIT, "+", "/"),
 
     base64pad: () => "=",
 
-    base64line: $ => seq(repeat1($.base64char), repeat($.WSP), $.eol),
-
-    base64finl: $ => seq(
-      repeat($.base64char),
-      $.base64pad,
-      repeat($.WSP),
-      $.eol,
-      choice(
-        $.base64pad,
-        optional(seq(
-          $.base64pad,
-          optional($.base64pad),
-        )),
-      ),
-      repeat($.WSP),
-      $.eol,
-    ),
-
-
-    base64text: $ => seq(repeat($.base64line), $.base64finl),
-
-    labelchar: () => /[!-,.-~]/,
+    _labelchar: () => /[!-,.-~]/,
 
     // NOTE: this doesn't correspond directly to the ABNF, which wraps the
     // whole token in [...] since tree-sitter doesn't support rules that match
     // the empty string. Instead, that is omitted here, and optional($.label)
     // is used wherever label is specified in the ABNF.
     label: $ => seq(
-      $.labelchar,
+      $._labelchar,
       repeat(seq(
-        optional(choice("-", $.SP)),
-        $.labelchar,
+        optional(choice("-", $._SP)),
+        $._labelchar,
       )),
     ),
 
-    eol: $ => choice($.CRLF, $.CR, $.LF),
+    _eol: $ => choice($._CRLF, $._CR, $._LF),
 
-    eolWSP: $ => seq($.WSP, $.CR, $.LF),
+    _eolWSP: $ => seq($._WSP, $._CR, $._LF),
 
     // ABNF (Builtins)
 
-    ALPHA: () => /[A-Za-z]/,
+    _ALPHA: () => /[A-Za-z]/,
 
-    DIGIT: () => /[0-9]/,
+    _DIGIT: () => /[0-9]/,
 
-    SP: () => " ",
+    _SP: () => " ",
 
-    HTAB: () => "\t",
+    _HTAB: () => "\t",
 
-    WSP: $ => choice($.SP, $.HTAB),
+    _WSP: $ => choice($._SP, $._HTAB),
 
-    CR: () => "\r",
+    _CR: () => "\r",
 
-    LF: () => "\n",
+    _LF: () => "\n",
 
-    CRLF: $ => seq($.CR, $.LF),
+    _CRLF: $ => seq($._CR, $._LF),
   },
 })
